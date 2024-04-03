@@ -11,6 +11,8 @@ import EnterNameScreen from './screens/RegisterScreen/EnterNameScreen';
 import EnterPhoneNumberScreen from './screens/RegisterScreen/EnterPhoneNumberScreen';
 import EnterCodeRegisScreen from './screens/RegisterScreen/EnterCodeRegisScreen';
 import EnterDayofBirthAndGenderScreen from './screens/RegisterScreen/EnterDayofBirthAndGenderScreen';
+import EnterPasswordScreen from './screens/RegisterScreen/EnterPasswordScreen';
+import EnterNewPasswordScreen from './screens/ForgotPassword/EnterNewPasswordScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +31,8 @@ export default function App() {
         <Stack.Screen name="EnterPhoneNumberScreen" component={EnterPhoneNumberScreen} />
         <Stack.Screen name="EnterCodeRegisScreen" component={EnterCodeRegisScreen} />
         <Stack.Screen name="EnterDayofBirthAndGenderScreen" component={EnterDayofBirthAndGenderScreen} />
+        <Stack.Screen name="EnterPasswordScreen" component={EnterPasswordScreen} />
+        <Stack.Screen name="EnterNewPasswordScreen" component={EnterNewPasswordScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

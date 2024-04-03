@@ -92,10 +92,10 @@ const styles = StyleSheet.create({
       },
       textInputPhone: {
         borderBottomColor: 'gray',
-        borderBottomWidth: 0.5,
+        borderBottomWidth: 0.6,
         width: 350,
-        paddingBottom: 8,
-        fontSize: 16,
+        paddingBottom: 4,
+        fontSize: 18,
         marginVertical: 30,
       },
       btnNextContainer: {
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         backgroundColor: '#41ADFA',
-        padding: 15,
+        justifyContent: 'center',
         borderRadius: 10,
         right: 15,
         bottom: 15

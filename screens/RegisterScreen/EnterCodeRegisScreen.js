@@ -6,9 +6,9 @@ import icons from '../../constants/icons';
 import images from '../../constants/images';
 import {OtpInput} from 'react-native-otp-entry'
 
-const EnterCodeRegisScreen = () => {
+const EnterCodeRegisScreen = ({ route }) => {
   const navigation = useNavigation();
-
+  const { phoneNumber} = route.params;
   
   return (
     <View style={styles.container}>
@@ -21,11 +21,11 @@ const EnterCodeRegisScreen = () => {
         <View style={styles.infoContainer}>
           <Image source={images.box} style={{top: 80}}/>
 
-          <Text style={{fontSize: 16, fontWeight: 800, top: 100}}>Đã gửi mã đến số +84 123456789</Text>
+          <Text style={{fontSize: 16, fontWeight: 800, top: 100}}>Đã gửi mã đến số {phoneNumber}</Text>
 
           <Text style={{fontSize: 16, top: 110}}>Xin kiểm tra SMS và điền mã xác nhận bên dưới</Text>
 
-          <View style={{width: 350, top: 150}}>
+          <View style={{width: 300, top: 150}}>
             <OtpInput
               numberOfDigits={6}
               onTextChange={(text) => console.log(text)}
@@ -33,8 +33,8 @@ const EnterCodeRegisScreen = () => {
               theme={{
                 pinCodeContainerStyle:{
                   backgroundColor: 'white',
-                  width: 45,
-                  height: 50,
+                  width: 40,
+                  height: 45,
                   borderRadius: 12
                 }
               }}
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         alignItems:'flex-start',
         backgroundColor: '#ECECEC',
         height: 40,
-        left: 10,
+        left: 20,
         justifyContent: 'center'
     },
     infoContainer: {
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
       width: 50,
       height: 50,
       backgroundColor: '#41ADFA',
-      padding: 15,
+      justifyContent: 'center',
       borderRadius: 10,
       right: 15,
       bottom: 15

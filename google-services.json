@@ -1,0 +1,29 @@
+  {
+  "project_info": {
+    "project_number": "8408611295",
+    "project_id": "sunchat-d55ab",
+    "storage_bucket": "sunchat-d55ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8408611295:android:27b125f1e31e9177b8ec6a",
+        "android_client_info": {
+          "package_name": "com.tranquoctuan.Sunchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbfy37lvPLCkkaBhT6qeJUTwL_q1A2Ufk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
