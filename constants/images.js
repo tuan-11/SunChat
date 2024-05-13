@@ -5,6 +5,7 @@ const auth3 = require("../assets/images/auth_background_3.png");
 const auth4 = require("../assets/images/auth_background_4.png");
 const pass = require("../assets/images/password.png");
 const box = require("../assets/images/box.png");
+const avatar = require("../assets/images/avatar.jpg");
 
 export default {
     splash,
@@ -13,5 +14,6 @@ export default {
     auth3,
     auth4,
     pass,
-    box
+    box,
+    avatar
 }
