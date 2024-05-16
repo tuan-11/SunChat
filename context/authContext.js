@@ -8,15 +8,18 @@ import { ToastAndroid} from 'react-native'
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "../firebase/firebaseConfig";
 import { StreamChat } from 'stream-chat';
-import { useChatClient } from "../api/useChatClient";
+// import { useChatClient } from "../api/useChatClient";
 import { useAppContext } from "./AppContext";
-import axios from 'axios';
+import { getToken } from '../server/useApi';
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({children})=>{
     const navigation = useNavigation();
     const [user, setUser] = useState(null);
+    const [userId, setUserId] = useState(null);
+    const [userName, setUserName] = useState(null);
+    const [userToken, setUserToken] = useState(null);
     const [notRegistered, setNotRegistered] = useState(false);
     const [otherUser, setOtherUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(undefined);
@@ -42,6 +45,14 @@ export const AuthContextProvider = ({children})=>{
         });
         return unsub;
     }, [])
+
+    useEffect(() => {
+      if (userId && userToken) {
+        console.log('user:', userId);
+        console.log('token:', userToken);
+        navigation.navigate('BottomTabNavigation', { userId: userId, userToken: userToken });
+      }
+    }, [userId,userToken]);
 
     const getUserData = async (userId) => {
         const docRef = doc(db, 'users', userId);
@@ -84,10 +95,12 @@ export const AuthContextProvider = ({children})=>{
           return [];
         }
       };
-
+/////const users = await client.queryUsers({}, { id: 1 });
     const updateUserNameData = async (newName) => {
-      const client = new StreamChat.getInstance('bt2cwnkjayw3', '8u648gm3myz87c2gfrjddbubahyqyydapx6sskcbyqbgagq3bgdyngyu7pw2nk6n');
+      const client = new StreamChat.getInstance('bt2cwnkjayw3');
+      console.log(1);
       const users = await client.queryUsers({}, { id: 1 });
+      console.log(2);
       if (typeof users === 'object' && !Array.isArray(users)) {
         try {
           const userValues = Object.values(users);
@@ -176,28 +189,6 @@ export const AuthContextProvider = ({children})=>{
         }
     }
 
-    const getToken = async () => {
-      try {
-        const response = await axios.post('http://localhost:3000/token', {
-          user_id: 'nvkhang',
-        });
-        console.log('Token:', response.data.token);
-        return response.data.token;
-      } catch (error) {
-        if (error.response) {
-          // Xử lý lỗi từ phía server
-          console.log('Error server:', error.response.status, error.response.data);
-        } else if (error.request) {
-          // Xử lý lỗi không nhận được phản hồi từ server
-          console.log('No response received from server');
-        } else {
-          // Xử lý lỗi khác
-          console.log('Error:', error.message);
-        }
-        return null;
-      }
-    }
-
     const login = async (email, password)=> {
         return signInWithEmailAndPassword(auth, email, password)
           .then(async (userCredential) => {
@@ -205,13 +196,20 @@ export const AuthContextProvider = ({children})=>{
             if (user2.emailVerified) {
                 showToast();
 
-                try {
-                  const token = await getToken();
-                  console.log('Token:', token);
-                  navigation.navigate('BottomTabNavigation');
-                } catch (error) {
-                  console.error('Error getting token:', error);
-                }
+                // try {
+                //   const token = await getToken();
+                //   console.log('Token:', token);
+                  // navigation.navigate('BottomTabNavigation');
+                // } catch (error) {
+                //   console.error('Error getting token:', error);
+                // }
+                // setUser({ ...user, userId: user2.uid });
+                // setUserIdChatClient(user2.uid);
+
+                const token = await getToken(user2.uid);
+                console.log("get token1 "+ token);
+                setUserId(user2.uid);
+                setUserToken(token);
             } else {
                 alert('Vui lòng xác minh Email!');
                 const actionCodeSettings = {
@@ -234,8 +232,11 @@ export const AuthContextProvider = ({children})=>{
 
     const logout = async ()=>{
         try {
-            const client = new StreamChat.getInstance('bt2cwnkjayw3', '8u648gm3myz87c2gfrjddbubahyqyydapx6sskcbyqbgagq3bgdyngyu7pw2nk6n');
+            const client = new StreamChat.getInstance('bt2cwnkjayw3');
+            console.log("client in logout1: "+ JSON.stringify(client.userID));
             await client.disconnectUser();
+            console.log("client in logout2: "+ JSON.stringify(client.userID));
+            setUserToken(null);
           } catch (error) {
             console.error('Error logging out:', error);
             throw error;

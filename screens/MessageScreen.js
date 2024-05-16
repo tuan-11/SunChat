@@ -2,10 +2,10 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import NavigationStack from "../navigations/NavigationStack";
 
-const MessageScreen = () => {
+const MessageScreen = ({ userId, userToken }) => {
   return (
     <View style={styles.container}>
-      <NavigationStack />
+      <NavigationStack userId={userId} userToken={userToken}/>
     </View>
   )
 }

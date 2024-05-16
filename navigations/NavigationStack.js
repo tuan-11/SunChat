@@ -12,12 +12,14 @@ import FriendRequestListScreen from "../screens/FriendRequestListScreen";
 import { Chat, OverlayProvider } from "stream-chat-expo";
 import { StreamChat } from "stream-chat";
 import { chatApiKey } from "../chatConfig";
-import { useChatClient } from "../api/useChatClient";
+import useChatClient from "../api/useChatClient";
 
 const Stack = createStackNavigator();
 
-const NavigationStack = () => {
-    const { clientIsReady } = useChatClient();
+const NavigationStack = ({ userId, userToken }) => {
+  console.log("navi usser"+userId );
+  console.log("navi token"+userToken);
+    const { clientIsReady} = useChatClient(userId, userToken);
     const chatClient = StreamChat.getInstance(chatApiKey);
     if (!clientIsReady) {
       return (
@@ -63,14 +65,14 @@ const NavigationStack = () => {
   );
 };
 
-export default () => {
+export default ({ userId, userToken }) => {
   return (
     <AppProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <SafeAreaView style={{ flex: 1 }}>
-          <NavigationStack />
-        </SafeAreaView>
-      </GestureHandlerRootView>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <SafeAreaView style={{ flex: 1 }}>
+            <NavigationStack userId={userId} userToken={userToken}/>
+          </SafeAreaView>
+        </GestureHandlerRootView>
     </AppProvider>
   );
 };

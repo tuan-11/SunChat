@@ -10,7 +10,8 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigation = () => {
+const BottomTabNavigation = ({ route }) => {
+        const { userId, userToken } = route.params;
 
   return (
     <Tab.Navigator
@@ -29,7 +30,6 @@ const BottomTabNavigation = () => {
     >
         <Tab.Screen
             name="Message" 
-            component={MessageScreen} 
             options = {{
                 tabBarIcon:({focused}) => {
                     return(
@@ -55,7 +55,9 @@ const BottomTabNavigation = () => {
                     }
                     return {};
                   }
-        }}/> 
+        }}> 
+            {props => <MessageScreen {...props} userId={userId} userToken={userToken}/>}
+        </Tab.Screen>
 
         <Tab.Screen
             name="Phonebook" 

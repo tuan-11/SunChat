@@ -1,27 +1,32 @@
-const axios = require('axios');
-// import axios from "axios";
-async function getToken() {
+async function getToken(id) {
+  
   try {
-    const response = await axios.post('http://localhost:3000/token', {
-      user_id: 'nvkhang',
+    const response = await fetch('http://192.168.1.5:3000/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id: id,
+      }),
     });
-    console.log('Token:', response.data.token);
-    return response.data.token;
-  } catch (error) {
-    if (error.response) {
-      // Xử lý lỗi từ phía server
-      console.log('Error server:', error.response.status, error.response.data);
-    } else if (error.request) {
-      // Xử lý lỗi không nhận được phản hồi từ server
-      console.log('No response received from server');
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log('Token:', data.token);
+      return data.token;
     } else {
-      // Xử lý lỗi khác
-      console.log('Error:', error.message);
+      // Xử lý lỗi từ phía server
+      console.log('Error server:', response.status, data);
+      return null;
     }
+  } catch (error) {
+    // Xử lý lỗi không nhận được phản hồi từ server hoặc lỗi khác
+    console.log('Error:', error.message);
     return null;
   }
 }
-
+getToken('eulwVMvekvc7VBJsOFVQq231lek1');
 module.exports = {
   getToken,
 };
