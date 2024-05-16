@@ -19,7 +19,7 @@ const Header = ({title}) => {
             headerTitleAlign: "center",
             headerLeft:() => (
                 <Pressable onPress={() => navigation.goBack()} style={{ flexDirection: 'row', marginLeft: 12}}>
-                    <Image source={icons.back} />
+                    <Image source={icons.back} style={styles.backIcon}/>
                 </Pressable>
             ),     
         })
@@ -28,3 +28,11 @@ const Header = ({title}) => {
 }
 
 export default Header
+
+const styles = StyleSheet.create({
+    backIcon: {
+        width: 20,
+        height: 20,
+        tintColor: 'white',
+    }
+})

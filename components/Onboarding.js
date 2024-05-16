@@ -42,7 +42,7 @@ const Onboarding = ({navigation}) => {
         <Paginator data={slides} scrollX={scrollX}/>
         <LoginButton
             title="Đăng nhập"
-            onPress={() => navigation.navigate("LoginScreen")}
+            onPress={() => navigation.navigate("LoginScreenWithContext")}
             style={{
                 position: 'absolute',
                 bottom: 120,
@@ -52,7 +52,7 @@ const Onboarding = ({navigation}) => {
         />
         <RegisterButton
             title="Đăng ký"
-            onPress={() => navigation.navigate("EnterNameScreen")}
+            onPress={() => navigation.navigate("RegisterScreenWithContext")}
             style={{
                 position: 'absolute',
                 bottom: 40,

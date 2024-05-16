@@ -1,39 +1,37 @@
-  {
-    "expo": {
-      "name": "Sunchat",
-      "slug": "Sunchat",
-      "sdkVersion": "50.0.0",
-      "plugins": ["@react-native-firebase/app", "@react-native-firebase/auth"],
-      "version": "1.0.0",
-      "orientation": "portrait",
-      "icon": "./assets/icon.png",
-      "userInterfaceStyle": "light",
-      "splash": {
-        "image": "./assets/splash.png",
-        "resizeMode": "contain",
+{
+  "expo": {
+    "name": "Sunchat",
+    "slug": "Sunchat",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "assetBundlePatterns": [
-        "**/*"
-      ],
-      "ios": {
-        "supportsTablet": true
-      },
-      "android": {
-        "googleServicesFile": "./google-services.json", 
-        "adaptiveIcon": {
-          "foregroundImage": "./assets/adaptive-icon.png",
-          "backgroundColor": "#ffffff"
-        },
-        "package": "com.tranquoctuan.Sunchat"
-      },  
-      "web": {
-        "favicon": "./assets/favicon.png"
-      },
-      "extra": {
-        "eas": {
-          "projectId": "415a7fc3-3649-44d6-b8e9-4bc9c94240bf"
-        }
-      }
-    }
+      "permissions": ["INTERNET"]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ],
+    "permissions": [
+      "CONTACTS"
+    ]
   }
+}

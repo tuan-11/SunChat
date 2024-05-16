@@ -1,14 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import NavigationStack from "../navigations/NavigationStack";
 
-const MessageScreen = () => {
+const MessageScreen = ({ userId, userToken }) => {
   return (
-    <View>
-      <Text>MessageScreen</Text>
+    <View style={styles.container}>
+      <NavigationStack userId={userId} userToken={userToken}/>
     </View>
   )
 }
 
 export default MessageScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
